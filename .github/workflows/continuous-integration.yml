@@ -25,10 +25,7 @@ jobs:
           node-version: 18.x
 
       - name: Install Dependencies
-        run: |
-            npm config set registry https://resmed.jfrog.io/artifactory/api/npm/npm/
-            npm set "//resmed.jfrog.io/artifactory/api/npm/npm/:_authToken" ${{secrets.TOKEN}}
-            npm ci
+        run: npm ci
 
       - name: Build Project
         run: npm run build
