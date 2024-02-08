@@ -26,8 +26,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-            npm config set registry https://npm.pkg.github.com
-            npm set "//npm.pkg.github.com/:_authToken"${{secrets.TOKEN}}
+            npm config set registry https://resmed.jfrog.io/artifactory/api/npm/npm/
+            npm set "//resmed.jfrog.io/artifactory/api/npm/npm/:_authToken" ${{secrets.TOKEN}}
             npm ci
 
       - name: Build Project
