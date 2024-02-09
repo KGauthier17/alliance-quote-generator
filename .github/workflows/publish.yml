@@ -31,13 +31,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install dependencies
+
+      - name: Install dependencies 👨🏻‍💻
         run: yarn
+
+      - name: Compile and minify for production 🧪
+        run: yarn run build
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
           role-to-assume: arn:aws:iam::651762687517:role/quote-generator_oidc
           aws-region: us-east-2
+
       - name: Check identity
         id: validate
         run: |
@@ -46,5 +52,5 @@ jobs:
       - name: Upload to S3
         id: Sync
         run: |
-          aws s3 sync alliance-quote-generator/build s3://quote-generator-alliance/ --delete
-          aws s3 cp alliance-quote-generator/build/index.html s3://quote-generator-alliance/index.html
+          aws s3 sync ./build s3://quote-generator-alliance/ --delete
+          aws s3 cp ./build/index.html s3://quote-generator-alliance/index.html
