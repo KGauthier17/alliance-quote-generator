@@ -33,7 +33,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@master
         with:
           role-to-assume: arn:aws:iam::651762687517:role/quote-generator_oidc
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Check identity
         id: validate
         run: |
