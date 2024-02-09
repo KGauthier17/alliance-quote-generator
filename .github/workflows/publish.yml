@@ -47,4 +47,3 @@ jobs:
         id: Sync
         run: |
           aws s3 sync ./build s3://quote-generator-alliance/ --delete
-          aws s3 cp ./build/index.html s3://quote-generator-alliance/index.html
