@@ -6,7 +6,8 @@ target/
 
 site/
 
-node_modules
+node_modules/
+build/
 
 ### STS ###
 .apt_generated
