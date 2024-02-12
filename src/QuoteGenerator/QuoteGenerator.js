@@ -8,9 +8,15 @@ const QuoteGenerator = () => {
 
   const generateRandomQuote = async () => {
     try {
-      const response = await fetch('https://api.quotable.io/random');
+      const response = await fetch('https://api.api-ninjas.com/v1/quotes?category=', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'X-Api-Key': 'fCrezoO5nUy83XPdgjvGiA==ICO6L6ok3Puq9s1b'
+        }
+      });
       const data = await response.json();
-      const fullQuote = `${data.content} ~ ${data.author}`;
+      const fullQuote = `${data.quote} ~ ${data.author}`;
       setRandomQuote(fullQuote);
 
       
