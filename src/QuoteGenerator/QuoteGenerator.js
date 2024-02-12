@@ -15,7 +15,6 @@ const QuoteGenerator = () => {
         }
       });
       const data = await response.json();
-      console.log(data)
       const fullQuote = `${data[0].quote} ~ ${data[0].author}`;
       setRandomQuote(fullQuote);
 
