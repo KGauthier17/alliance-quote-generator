@@ -5,8 +5,10 @@ const QuoteGenerator = () => {
   const [randomQuote, setRandomQuote] = useState('');
   const [typedQuote, setTypedQuote] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false); // New state variable
 
   const generateRandomQuote = async () => {
+    setIsButtonDisabled(true); // Disable the button when quote generation starts
     const url = 'https://quotes85.p.rapidapi.com/getrandomquote';
     const options = {
       method: 'GET',
@@ -21,22 +23,25 @@ const QuoteGenerator = () => {
       console.log(result)
       setRandomQuote(result);
 
-      
       setIsTyping(true);
       setTypedQuote('');
       for (let i = 0; i < result.length; i++) {
         setTimeout(() => {
           setTypedQuote((prev) => prev + result[i]);
+          if (i === result.length - 1) {
+            setIsButtonDisabled(false); // Enable the button when quote has been fully typed out
+          }
         }, i * 50);
       }
     } catch (error) {
       console.error('Error fetching quote:', error);
+      setIsButtonDisabled(false); // Enable the button in case of error
     }
   };
 
   return (
     <div className="quote-container">
-      <button className="quote-button" onClick={generateRandomQuote}>
+      <button className="quote-button" onClick={generateRandomQuote} disabled={isButtonDisabled}>
         Get Random Quote
       </button>
       {isTyping ? <p className="quote">{typedQuote}</p> : null}
