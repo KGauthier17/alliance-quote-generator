@@ -7,23 +7,26 @@ const QuoteGenerator = () => {
   const [isTyping, setIsTyping] = useState(false);
 
   const generateRandomQuote = async () => {
+    const url = 'https://quotes85.p.rapidapi.com/getrandomquote';
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'ac35d174fdmsh75e84e86f23587dp17b3f6jsn4253379c073a',
+        'X-RapidAPI-Host': 'quotes85.p.rapidapi.com'
+      }
+    };
     try {
-      const response = await fetch('https://api.api-ninjas.com/v1/quotes?category=', {
-        method: 'GET',
-        headers: {
-          'X-Api-Key': 'fCrezoO5nUy83XPdgjvGiA==ICO6L6ok3Puq9s1b'
-        }
-      });
-      const data = await response.json();
-      const fullQuote = `${data[0].quote} ~ ${data[0].author}`;
-      setRandomQuote(fullQuote);
+      const response = await fetch(url, options);
+      const result = await response.text();
+      console.log(result)
+      setRandomQuote(result);
 
       
       setIsTyping(true);
       setTypedQuote('');
-      for (let i = 0; i < fullQuote.length; i++) {
+      for (let i = 0; i < result.length; i++) {
         setTimeout(() => {
-          setTypedQuote((prev) => prev + fullQuote[i]);
+          setTypedQuote((prev) => prev + result[i]);
         }, i * 50);
       }
     } catch (error) {
