@@ -1,11 +1,14 @@
 .quote-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 200px;
     max-width: 800px;
     margin: 0 auto;
-  }
+    min-height: 200px;
+}
+  
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
   
 .quote-button {
     background-color: #4caf50;
@@ -30,17 +33,56 @@
 }
 
 .copy-button {
-    background-color: #007bff;
+    background-color: #555; /* Initial color */
+    transition: background-color 0.3s ease-in-out;
     color: white;
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
     border: none;
-    border-radius: 3px;
-    margin-top: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.copy-button.success {
+    /* Add your success state styles here */
+    background-color: #008000;
+    transition: background-color 0.3s;
 }
 
 .copy-button:hover {
-    background-color: #0056b3;
+    background-color: #7d7d7d;
 }
-  
+
+.copy-button i {
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 0.3s, transform 0.3s, color 2s;
+    opacity: 0;
+}
+
+.copy-button .fa-clipboard {
+    transform: rotate(0deg);
+    opacity: 1;
+}
+
+.copy-button.clicked .fa-clipboard {
+    transform: rotate(-180deg);
+    opacity: 0;
+}
+
+.copy-button .fa-check {
+    transform: rotate(180deg);
+    color: #000; /* Initial color of the checkmark */
+}
+
+.copy-button.clicked .fa-check {
+    transform: rotate(0deg);
+    opacity: 1;
+    color: #008000; /* Color of the checkmark when clicked */
+}
