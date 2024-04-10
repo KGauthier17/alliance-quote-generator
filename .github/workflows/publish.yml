@@ -5,6 +5,12 @@ on:
     inputs:
       environment:
         type: environment
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 permissions:
       id-token: write
